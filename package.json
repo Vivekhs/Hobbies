@@ -34,11 +34,13 @@
         "gulp-rename": "~1.2.2",
         "gulp-sass": "~3.1.0",
         "morgan": "~1.9.0",
+        "ng-socket-io": "^0.2.4",
         "node-sass": "~4.7.2",
         "pug": "2.0.0-beta11",
         "reflect-metadata": "~0.1.10",
         "rxjs": "~5.5.6",
         "serve-favicon": "~2.4.5",
+        "socket.io": "^2.0.4",
         "zone.js": "~0.8.19"
     },
     "devDependencies": {

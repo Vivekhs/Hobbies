@@ -61,9 +61,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
 var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var ng_socket_io_1 = __webpack_require__("../../../../ng-socket-io/dist/index.js");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
 var app_routing_1 = __webpack_require__("../../../../../src/app/app.routing.ts");
 var home_component_1 = __webpack_require__("../../../../../src/app/home/home.component.ts");
+//configs
+var config = { url: 'http://localhost:3000', options: {} };
 var AppModule = (function () {
     function AppModule() {
     }
@@ -76,6 +79,7 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 router_1.RouterModule.forRoot(app_routing_1.APP_ROUTES),
+                ng_socket_io_1.SocketIoModule.forRoot(config)
             ],
             providers: [],
             bootstrap: [app_component_1.AppComponent]
@@ -121,10 +125,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var ng_socket_io_1 = __webpack_require__("../../../../ng-socket-io/dist/index.js");
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(socket) {
+        this.socket = socket;
+        this.socket.on('connection', function (data) {
+            console.log('hello', data);
+        });
     }
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -132,7 +144,8 @@ var HomeComponent = (function () {
         core_1.Component({
             selector: 'home-page',
             template: __webpack_require__("../../../../../src/app/home/home.component.html")
-        })
+        }),
+        __metadata("design:paramtypes", [ng_socket_io_1.Socket])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -182,6 +195,13 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 
 module.exports = __webpack_require__("../../../../../src/main.ts");
 
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+/* (ignored) */
 
 /***/ })
 
